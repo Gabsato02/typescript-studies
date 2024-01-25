@@ -66,6 +66,7 @@ interface InterfaceMovie {
 	release_year: number;
 	director: Director;
 	restricted: boolean;
+	rating?: number; // Propriedade opcional
 };
 
 function fillMovieData(data: InterfaceMovie) {
@@ -80,3 +81,14 @@ fillMovieData({
   director: 'John Carpenter',
   restricted: true,
 });
+
+// ARRAYS
+const numbers = [10, 20, 30, 40];
+
+function biggerThan(data: number[], comparison: number) {
+	return data.filter(n => n > comparison);
+}
+
+function filterNumbers(data: (string | number)[]) {
+	return data.filter(item => typeof item === 'number');
+}
