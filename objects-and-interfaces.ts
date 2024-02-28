@@ -41,11 +41,47 @@ Ao verificar uma dessas classes com o instaceof, é possível acessar métodos e
 const a = document.querySelectorAll('a');
 console.log(a instanceof NodeList); // true
 
-// EVENTS
-const button = document.querySelector('button');
+/* GENERIC & EXTENDS
 
-function handleClick(event: Event) {
-  console.log(event);
+function functionName<Generic>(arg: Generic) {}
+
+O Generic funciona como o tipo Any, porém não ocorre a perda da informação de
+qual tipo foi passado como parâmetro. Dessa forma, ainda é possível acessar métodos e 
+propriedades do tipo do parâmetro, através da inferência feita pelo compilador.
+
+O Extends indica que um tipo genérico deve herdar de uma interface específica.
+
+*/
+
+function extractText<Element extends HTMLElement>(element: Element) {
+  return {
+    text: element.innerText,
+    element,
+  };
 }
 
-button?.addEventListener('click', handleClick);
+const anchor = document.querySelector('a');
+
+if (anchor) console.log(extractText(anchor).element.href);
+
+// FUNCTIONS
+
+function voidFunction(value: string): void { // Uma função que não retorna nada, tem o retorno do tipo void.
+  console.log(`Inputed: ${value}`);
+}
+
+function neverFunction(message: string): never { // Uma função que retorna um erro ou uma interrupção de execução do código, possui o tipo never.
+  throw new Error(message); 
+}
+
+/* FUNCTION OVERLOAD - declaração de interfaces para funções quando existe variação de retorno de acordo com o 
+parâmetro passado */
+function normalize(value: string): string;
+function normalize(value: string[]): string[];
+function normalize(value: string | string[]): string | string[] {
+  if (typeof value === 'string') {
+    return value.trim().toLowerCase();
+  } else {
+    return value.map((v) => v.trim().toLowerCase());
+  }
+}

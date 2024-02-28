@@ -33,9 +33,38 @@ Ao verificar uma dessas classes com o instaceof, é possível acessar métodos e
 */
 const a = document.querySelectorAll('a');
 console.log(a instanceof NodeList); // true
-// EVENTS
-const button = document.querySelector('button');
-function handleClick(event) {
-    console.log(event);
+/* GENERIC & EXTENDS
+
+function functionName<Generic>(arg: Generic) {}
+
+O Generic funciona como o tipo Any, porém não ocorre a perda da informação de
+qual tipo foi passado como parâmetro. Dessa forma, ainda é possível acessar métodos e
+propriedades do tipo do parâmetro, através da inferência feita pelo compilador.
+
+O Extends indica que um tipo genérico deve herdar de uma interface específica.
+
+*/
+function extractText(element) {
+    return {
+        text: element.innerText,
+        element,
+    };
 }
-button?.addEventListener('click', handleClick);
+const anchor = document.querySelector('a');
+if (anchor)
+    console.log(extractText(anchor).element.href);
+// FUNCTIONS
+function voidFunction(value) {
+    console.log(`Inputed: ${value}`);
+}
+function neverFunction(message) {
+    throw new Error(message);
+}
+function normalize(value) {
+    if (typeof value === 'string') {
+        return value.trim().toLowerCase();
+    }
+    else {
+        return value.map((v) => v.trim().toLowerCase());
+    }
+}
