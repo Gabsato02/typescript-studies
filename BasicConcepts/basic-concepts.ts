@@ -92,3 +92,28 @@ function biggerThan(data: number[], comparison: number) {
 function filterNumbers(data: (string | number)[]) {
 	return data.filter(item => typeof item === 'number');
 }
+
+// INTERSECTION 
+type Car = {
+	wheels: number;
+	doors: number;
+}
+
+type SportCar = Car & {
+	// Um type pode ser associado com outro em sua criação
+	horse_power: number;
+};
+
+function printCar(car: Car & SportCar) { // Ou também na checagem de tipo
+	console.log(car.horse_power);
+}
+
+// Também é possível adicionar mais propriedades a uma interface, caso necessário
+interface Motorbike {
+	wheels: 2;
+}
+
+interface Motorbike {
+	is_chopper: true;
+}
+

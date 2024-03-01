@@ -40,3 +40,6 @@ function biggerThan(data, comparison) {
 function filterNumbers(data) {
     return data.filter(item => typeof item === 'number');
 }
+function printCar(car) {
+    console.log(car.horse_power);
+}
