@@ -21,7 +21,7 @@ function isUserData(data) {
     }
     return false;
 }
-function isString(value) {
+function checkIfString(value) {
     return typeof value === 'string';
 }
 const localStoreUserData = localStorage.getItem('userdata') || '';
@@ -30,7 +30,7 @@ if (isUserData(parsedData)) {
     window.userdata = parsedData;
     Object.entries(window.userdata).forEach(([key, value]) => {
         const input = document.querySelector(`#${key}`);
-        if (isString(value))
+        if (checkIfString(value))
             input.value = value;
     });
 }

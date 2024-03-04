@@ -37,7 +37,7 @@ function isUserData(data: unknown): data is UserData {
 	return false;
 }
 
-function isString(value: unknown): value is string {
+function checkIfString(value: unknown): value is string {
 	return typeof value === 'string';
 }
 
@@ -49,6 +49,6 @@ if (isUserData(parsedData)) {
 
 	Object.entries(window.userdata).forEach(([key, value]) => {
 		const input = document.querySelector(`#${key}`);
-		if (isString(value)) (input as HTMLInputElement).value = value;
+		if (checkIfString(value)) (input as HTMLInputElement).value = value;
 	});
 }
