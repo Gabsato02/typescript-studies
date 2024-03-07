@@ -1,3 +1,9 @@
+/**
+ *
+ * @param coin
+ * Recebe string '1.200,50' retorna number 1250
+ * @returns
+ */
 function coinToNumber(coin) {
     const number = Number(coin.replaceAll('.', '').replace(',', '.'));
     return isNaN(number) ? null : number;
