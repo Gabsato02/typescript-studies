@@ -1,3 +1,4 @@
+import stringToDate from "./stringToDate.js";
 /**
  *
  * @param coin
@@ -12,7 +13,7 @@ export default function normalizeTransaction(transaction) {
     return {
         status: transaction.Status,
         id: transaction.ID,
-        data: transaction.Data,
+        data: stringToDate(transaction.Data),
         nome: transaction.Nome,
         email: transaction.Email,
         pagamento: transaction['Forma de Pagamento'],

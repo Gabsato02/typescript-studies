@@ -1,3 +1,5 @@
+import stringToDate from "./stringToDate.js";
+
 declare global {
   type TransacaoPagamento = 'Boleto' | 'Cartão de Crédito';
 	type StatusPagamento =
@@ -20,7 +22,7 @@ declare global {
   interface Transaction {
 		status: StatusPagamento;
 		id: number;
-		data: string;
+		data: Date;
 		nome: string;
 		email: string;
 		pagamento: TransacaoPagamento;
@@ -42,11 +44,11 @@ function coinToNumber(coin: string): number | null {
   return isNaN(number) ? null : number;
 }
 
-export default function normalizeTransaction(transaction: TransactionAPI) {
+export default function normalizeTransaction(transaction: TransactionAPI): Transaction {
 	return {
 		status: transaction.Status,
 		id: transaction.ID,
-		data: transaction.Data,
+		data: stringToDate(transaction.Data),
 		nome: transaction.Nome,
 		email: transaction.Email,
 		pagamento: transaction['Forma de Pagamento'],
